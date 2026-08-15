@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: #090d16;
+    color: #f8fafc;
+    font-family: 'Outfit', 'Inter', sans-serif;
+  }
+}
+
+/* Glassmorphism utility card */
+.glass-panel {
+  background: rgba(18, 24, 41, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(18, 24, 41, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+}
+
+/* Radar Sweep SVG overlay */
+.radar-grid {
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.05) 0%, rgba(9, 13, 22, 0.95) 80%),
+              linear-gradient(rgba(0, 242, 254, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 242, 254, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+}
+
+/* Custom Scrollbar for Tactical Feeds */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(9, 13, 22, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 254, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.6);
+}
+
+/* Dark mode Leaflet tile adjustment */
+.leaflet-container {
+  background: #0b0f19 !important;
+  font-family: inherit;
+}
+
+.dark-tiles .leaflet-tile {
+  filter: brightness(0.7) invert(1) contrast(1.3) hue-rotate(200deg) saturate(0.4);
+}
+
+/* Leaflet Popup Custom Styling */
+.leaflet-popup-content-wrapper {
+  background: rgba(18, 24, 41, 0.95) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(18, 24, 41, 0.95) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 8px 10px 0 0 !important;
+}
+
+/* Glowing Status Pulsers */
+.pulse-red {
+  box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7);
+  animation: pulse-red-anim 1.8s infinite;
+}
+@keyframes pulse-red-anim {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 0, 85, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 0, 85, 0);
+  }
+}
+
+.pulse-amber {
+  animation: pulse-amber-anim 2s infinite;
+}
+@keyframes pulse-amber-anim {
+  0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(255, 153, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
+}
