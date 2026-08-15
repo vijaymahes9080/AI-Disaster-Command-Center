@@ -4,7 +4,7 @@ import networkx as nx
 from typing import List, Dict, Tuple
 from models import (
     WeatherSensorData, RiskPredictionResult, XAIFeatureWeight,
-    SocialNLPOutput, EvacuationRouteResult, RouteSegment,
+    SocialNLPOutput, EvacuationRouteRequest, EvacuationRouteResult, RouteSegment,
     ResourceDemandRequest, ResourceAllocationResult
 )
 
@@ -159,10 +159,10 @@ class SocialMediaNLPEngine:
 
         # Extract needs
         needs = []
-        if "boat" in text_lower or "rescue" in text_lower: needs.append("Rescue Boat")
-        if "food" in text_lower: needs.append("Ration Packets")
-        if "medical" in text_lower or "ambulance" in text_lower: needs.append("Medical Aid")
-        if "water" in text_lower: needs.append("Clean Water")
+        if any(w in text_lower for w in ["boat", "rescue", "trapped", "stranded"]): needs.append("Rescue Boat")
+        if any(w in text_lower for w in ["food", "ration", "meal", "hungry"]): needs.append("Ration Packets")
+        if any(w in text_lower for w in ["medical", "ambulance", "doctor", "injured", "patient"]): needs.append("Medical Aid")
+        if any(w in text_lower for w in ["water", "drinking", "thirsty"]): needs.append("Clean Water")
         if not needs: needs.append("General Assistance")
 
         post_id = f"NLP-{random.randint(1000, 9999)}"
