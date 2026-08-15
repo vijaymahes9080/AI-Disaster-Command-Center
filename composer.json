@@ -1,0 +1,12 @@
+{
+    "name": "vijaymahes/ai-disaster-command-center",
+    "description": "AI Disaster Command Center",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Vijay Mahes",
+            "email": "Vijaypradhap2004@gmail.com"
+        }
+    ],
+    "require": {}
+}
