@@ -8,6 +8,36 @@ import EvacuationPlanner from './components/EvacuationPlanner';
 import ResourceOptimizer from './components/ResourceOptimizer';
 import DigitalTwinSimulator from './components/DigitalTwinSimulator';
 
+// 28 Innovation Modules Imports
+import VoiceCommandCenter from './components/innovations/VoiceCommandCenter';
+import DroneScanner from './components/innovations/DroneScanner';
+import MultilingualBroadcast from './components/innovations/MultilingualBroadcast';
+import MeshNetworkSim from './components/innovations/MeshNetworkSim';
+import MissingPersonsMatcher from './components/innovations/MissingPersonsMatcher';
+import ShelterCapacityPredictor from './components/innovations/ShelterCapacityPredictor';
+import DamageCostEstimator from './components/innovations/DamageCostEstimator';
+import IotSensorStream from './components/innovations/IotSensorStream';
+import XaiTreeVisualizer from './components/innovations/XaiTreeVisualizer';
+import DisasterTimeLapse from './components/innovations/DisasterTimeLapse';
+import RescueForceMatrix from './components/innovations/RescueForceMatrix';
+import SarRadarFilter from './components/innovations/SarRadarFilter';
+import HazardTrustRating from './components/innovations/HazardTrustRating';
+import FireSpreadSimulator from './components/innovations/FireSpreadSimulator';
+import MedicalInventoryTracker from './components/innovations/MedicalInventoryTracker';
+import EvacVehicleMatcher from './components/innovations/EvacVehicleMatcher';
+import ReliefCampAllocator from './components/innovations/ReliefCampAllocator';
+import LandslidePredictor from './components/innovations/LandslidePredictor';
+import SitrepReportGenerator from './components/innovations/SitrepReportGenerator';
+import PowerGridBlackout from './components/innovations/PowerGridBlackout';
+import ChemicalPlumeSimulator from './components/innovations/ChemicalPlumeSimulator';
+import HelipadFinder from './components/innovations/HelipadFinder';
+import VolunteerDispatch from './components/innovations/VolunteerDispatch';
+import HistoricalAnalytics from './components/innovations/HistoricalAnalytics';
+import TacticalThemeCustomizer from './components/innovations/TacticalThemeCustomizer';
+import SmsWhatsappGateway from './components/innovations/SmsWhatsappGateway';
+import MitigationPolicyAdvisor from './components/innovations/MitigationPolicyAdvisor';
+import SystemTelemetryMonitor from './components/innovations/SystemTelemetryMonitor';
+
 export default function App() {
   const [initialData, setInitialData] = useState(null);
   const [incidents, setIncidents] = useState([]);
@@ -19,8 +49,8 @@ export default function App() {
   const [selectedIncident, setSelectedIncident] = useState(null);
   const [simMode, setSimMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('ALL');
 
-  // Fetch initial telemetry on mount
   useEffect(() => {
     fetchInitialData();
   }, []);
@@ -43,7 +73,6 @@ export default function App() {
     }
   };
 
-  // Handle adding new custom social post via NLP classifier
   const handleAddSocialPost = async (text, username) => {
     try {
       const res = await fetch('/api/classify-social-post', {
@@ -71,7 +100,6 @@ export default function App() {
     }
   };
 
-  // Recalculate Evacuation Route with custom avoidance settings
   const handleCalculateEvacRoute = async (avoidFlooded, avoidBlocked) => {
     try {
       const res = await fetch('/api/calculate-evacuation-route', {
@@ -91,7 +119,6 @@ export default function App() {
     }
   };
 
-  // Handle Simulation Stress Test Results
   const handleRunSimulation = (simData) => {
     if (simData.updated_risk) setRiskPrediction(simData.updated_risk);
     if (simData.simulated_sensor) setWeatherSensor(simData.simulated_sensor);
@@ -122,7 +149,7 @@ export default function App() {
       {/* Main Grid Workspace */}
       <main className="flex-1 p-3 md:p-4 grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 overflow-y-auto max-w-[1920px] mx-auto w-full">
         
-        {/* LEFT COLUMN: GIS Tactical Map & Digital Twin Simulator (7 Cols) */}
+        {/* LEFT COLUMN: Tactical Map, Twin Simulator & AI Innovations (7 Cols) */}
         <div className="lg:col-span-7 flex flex-col gap-3 md:gap-4">
           
           {/* Tactical GIS Map Canvas */}
@@ -135,18 +162,54 @@ export default function App() {
             />
           </div>
 
-          {/* Digital Twin Simulation Panel (When toggled or active) */}
+          {/* Digital Twin Simulation Panel */}
           <DigitalTwinSimulator 
             onRunSimulation={handleRunSimulation}
             onResetSimulation={fetchInitialData}
           />
+
+          {/* Innovation Modules Group 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <VoiceCommandCenter />
+            <DroneScanner />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <MultilingualBroadcast />
+            <MeshNetworkSim />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <MissingPersonsMatcher />
+            <ShelterCapacityPredictor />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <DamageCostEstimator />
+            <IotSensorStream />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <XaiTreeVisualizer />
+            <DisasterTimeLapse />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <RescueForceMatrix />
+            <SarRadarFilter />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <HazardTrustRating />
+            <FireSpreadSimulator />
+          </div>
 
           {/* Satellite Change Detection Intelligence */}
           <SatelliteIntelligence stats={satelliteStats} />
 
         </div>
 
-        {/* RIGHT COLUMN: AI Intelligence Engines & Operational Feeds (5 Cols) */}
+        {/* RIGHT COLUMN: AI Intelligence Engines & Innovations (5 Cols) */}
         <div className="lg:col-span-5 flex flex-col gap-3 md:gap-4">
           
           {/* Weather & ML Risk Prediction Engine */}
@@ -166,6 +229,39 @@ export default function App() {
             resourceData={resourceAllocation}
           />
 
+          {/* Innovation Modules Group 2 */}
+          <MedicalInventoryTracker />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <EvacVehicleMatcher />
+            <ReliefCampAllocator />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <LandslidePredictor />
+            <SitrepReportGenerator />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <PowerGridBlackout />
+            <ChemicalPlumeSimulator />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <HelipadFinder />
+            <VolunteerDispatch />
+          </div>
+
+          <HistoricalAnalytics />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <TacticalThemeCustomizer />
+            <SmsWhatsappGateway />
+          </div>
+
+          <MitigationPolicyAdvisor />
+          <SystemTelemetryMonitor />
+
           {/* Social Media NLP Classifier Feed */}
           <SocialNlpFeed 
             incidents={incidents}
@@ -180,7 +276,7 @@ export default function App() {
       {/* Footer Status Bar */}
       <footer className="bg-[#0e1424] border-t border-slate-800 px-4 py-1.5 text-[11px] font-mono text-slate-400 flex items-center justify-between">
         <div>
-          AI DISASTER COMMAND CENTER &copy; 2026 • MCA FINAL YEAR PROJECT
+          AI DISASTER COMMAND CENTER &copy; 2026 • 28 INNOVATION MODULES ACTIVE
         </div>
         <div className="flex items-center gap-3">
           <span className="text-cyan-400">STATUS: OPERATIONAL</span>
